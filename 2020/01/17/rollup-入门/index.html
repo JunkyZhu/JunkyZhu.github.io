@@ -242,7 +242,7 @@
 
     
         <meta property="article:published_time" content="Fri Jan 17 2020 14:29:36 GMT+0800">
-        <meta property="article:modified_time" content="Tue Jan 21 2020 16:49:18 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jan 21 2020 17:06:21 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -265,7 +265,7 @@
     "mainEntityOfPage": "http://yoursite.com/2020/01/17/rollup-入门/index.html",
     "headline": "Rollup 入门",
     "datePublished": "Fri Jan 17 2020 14:29:36 GMT+0800",
-    "dateModified": "Tue Jan 21 2020 16:49:18 GMT+0800",
+    "dateModified": "Tue Jan 21 2020 17:06:21 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Junky",
@@ -349,7 +349,7 @@
     </button>
 
     <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
-        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包第一个js"><span class="post-toc-number">2.</span> <span class="post-toc-text">打包第一个js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#rollup常见属性"><span class="post-toc-number">3.</span> <span class="post-toc-text">rollup常见属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-input-i-–input"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1. input(-i/–input)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-output-file-o-–output-file"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2. output.file(-o/–output.file)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-output-format-f-–output-format"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3. output.format(-f/–output.format)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-output-name-n-–name"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4. output.name(-n/–name)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-plugin"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5. plugin</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-external"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">6. external</span></a></li></ol></li></ol>
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#优势"><span class="post-toc-number">2.</span> <span class="post-toc-text">优势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包第一个js"><span class="post-toc-number">3.</span> <span class="post-toc-text">打包第一个js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#rollup常见属性"><span class="post-toc-number">4.</span> <span class="post-toc-text">rollup常见属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-input-i-–input"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">1. input(-i/–input)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-output-file-o-–output-file"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">2. output.file(-o/–output.file)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-output-format-f-–output-format"><span class="post-toc-number">4.3.</span> <span class="post-toc-text">3. output.format(-f/–output.format)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-output-name-n-–name"><span class="post-toc-number">4.4.</span> <span class="post-toc-text">4. output.name(-n/–name)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-plugin"><span class="post-toc-number">4.5.</span> <span class="post-toc-text">5. plugin</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-external"><span class="post-toc-number">4.6.</span> <span class="post-toc-text">6. external</span></a></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用的Rollup插件"><span class="post-toc-number">5.</span> <span class="post-toc-text">常用的Rollup插件</span></a></li></ol>
     </ul>
     
 
@@ -497,8 +497,7 @@
 <p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。相比webpack, 生成的代码更加简洁，干净，代码可读性相对也更加良好。</p>
 </blockquote>
 <p>### </p>
-<p>###优势</p>
-<ol>
+<h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ol>
 <li>编译出来的代码<code>可读性好</code></li>
 <li>Rollup打包后生成的bundle内容十分<code>干净</code>，没有什么多余的代码，只是将各个模块按照依赖顺序拼接起来，所有模块构建在一个函数内（Scope Hoisting）, 执行效率更高。相比webpack(webpack打包后会生成<strong>webpack_require</strong>等runtime代码)，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，<code>编译时依赖处理（rollup）自然比运行时依赖处理（webpack）性能更好</code></li>
 <li>对于ES模块依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码(tree-shaking，下文会有具体解释)</li>
@@ -546,7 +545,7 @@
 <p>外部扩展</p>
 <figure class="highlight plain"><figcaption><span>rollup.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import path from &apos;path&apos;;</span><br><span class="line">export default &#123;</span><br><span class="line">  ...,</span><br><span class="line">  external: [</span><br><span class="line">    &apos;some-externally-required-library&apos;,</span><br><span class="line">    path.resolve( &apos;./src/some-local-file-that-should-not-be-bundled.js&apos; )</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 </blockquote>
-<p>###常用的Rollup插件<br> ….</p>
+<h3 id="常用的Rollup插件"><a href="#常用的Rollup插件" class="headerlink" title="常用的Rollup插件"></a>常用的Rollup插件</h3><p> ….</p>
 
         
     
@@ -665,7 +664,7 @@
             </a>
             <ul class="dropdown-menu">
             <li>
-                <a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/04/">四月 2019<span class="sidebar_archives-count">1</span></a>
+                <a class="sidebar_archives-link" href="/archives/2020/01/">一月 2020<span class="sidebar_archives-count">1</span></a></li><li><a class="sidebar_archives-link" href="/archives/2019/12/">十二月 2019<span class="sidebar_archives-count">1</span></a>
             </ul>
         </li>
         
