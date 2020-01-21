@@ -46,7 +46,7 @@
     
     <title>
         
-            redux 入门 - 01简单的状态管理 | 
+            Rollup 入门 | 
         
         汪杨的个人日志
     </title>
@@ -57,7 +57,7 @@
 
     <meta name="format-detection" content="telephone=no">
     <meta name="description" itemprop="description" content>
-    <meta name="keywords" content>
+    <meta name="keywords" content=",Rollup入门">
     <meta name="theme-color" content="#0097A7">
 
     <!-- Disable Fucking Bloody Baidu Tranformation -->
@@ -218,7 +218,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="汪杨的个人日志">
-    <meta name="msapplication-starturl" content="http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2020/01/17/rollup-入门/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="汪杨的个人日志">
@@ -233,16 +233,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/">
+    <meta property="og:url" content="http://yoursite.com/2020/01/17/rollup-入门/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="redux 入门 - 01简单的状态管理 | 汪杨的个人日志">
+    <meta property="og:title" content="Rollup 入门 | 汪杨的个人日志">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
-    
+    <meta property="og:article:tag" content="Rollup入门"> 
 
     
-        <meta property="article:published_time" content="Sat Dec 28 2019 11:15:58 GMT+0800">
-        <meta property="article:modified_time" content="Thu Jan 02 2020 16:43:55 GMT+0800">
+        <meta property="article:published_time" content="Fri Jan 17 2020 14:29:36 GMT+0800">
+        <meta property="article:modified_time" content="Tue Jan 21 2020 16:49:18 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -250,7 +250,7 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html">
+        <link rel="canonical" href="http://yoursite.com/2020/01/17/rollup-入门/index.html">
     
 
     <!-- Structured-data for SEO -->
@@ -262,10 +262,10 @@
 {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "mainEntityOfPage": "http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html",
-    "headline": "redux 入门 - 01简单的状态管理",
-    "datePublished": "Sat Dec 28 2019 11:15:58 GMT+0800",
-    "dateModified": "Thu Jan 02 2020 16:43:55 GMT+0800",
+    "mainEntityOfPage": "http://yoursite.com/2020/01/17/rollup-入门/index.html",
+    "headline": "Rollup 入门",
+    "datePublished": "Fri Jan 17 2020 14:29:36 GMT+0800",
+    "dateModified": "Tue Jan 21 2020 16:49:18 GMT+0800",
     "author": {
         "@type": "Person",
         "name": "Junky",
@@ -283,7 +283,7 @@
             "url": "/img/favicon.png"
         }
     },
-    "keywords": "",
+    "keywords": ",Rollup入门",
     "description": "",
 }
 </script>
@@ -343,6 +343,15 @@
     <!-- Left aligned menu below button -->
     
     
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#介绍"><span class="post-toc-number">1.</span> <span class="post-toc-text">介绍</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#打包第一个js"><span class="post-toc-number">2.</span> <span class="post-toc-text">打包第一个js</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#rollup常见属性"><span class="post-toc-number">3.</span> <span class="post-toc-text">rollup常见属性</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#1-input-i-–input"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">1. input(-i/–input)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#2-output-file-o-–output-file"><span class="post-toc-number">3.2.</span> <span class="post-toc-text">2. output.file(-o/–output.file)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#3-output-format-f-–output-format"><span class="post-toc-number">3.3.</span> <span class="post-toc-text">3. output.format(-f/–output.format)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#4-output-name-n-–name"><span class="post-toc-number">3.4.</span> <span class="post-toc-text">4. output.name(-n/–name)</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#5-plugin"><span class="post-toc-number">3.5.</span> <span class="post-toc-text">5. plugin</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#6-external"><span class="post-toc-number">3.6.</span> <span class="post-toc-text">6. external</span></a></li></ol></li></ol>
+    </ul>
+    
 
 
 
@@ -372,7 +381,7 @@
         
     
             <p class="article-headline-p">
-                redux 入门 - 01简单的状态管理
+                Rollup 入门
             </p>
         </div>
 
@@ -391,7 +400,7 @@
     <!-- Author Name & Date -->
     <div>
         <strong>Junky</strong>
-        <span>12月 28, 2019</span>
+        <span>1月 17, 2020</span>
     </div>
 
     <div class="section-spacer"></div>
@@ -409,6 +418,15 @@
 
     <!-- Tags (bookmark) -->
     
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        <a class="post_tag-link" href="/tags/Rollup入门/">Rollup入门</a>
+    </ul>
+    
 
     <!-- Share -->
     
@@ -423,7 +441,7 @@
 
     <!-- Share Weibo -->
     
-        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=redux 入门 - 01简单的状态管理&url=http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Rollup 入门&url=http://yoursite.com/2020/01/17/rollup-入门/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
             <li class="mdl-menu__item">
                 分享到微博
             </li>
@@ -432,7 +450,7 @@
 
     <!-- Share Twitter -->
     
-        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=redux 入门 - 01简单的状态管理&url=http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html&via=Junky" target="_blank">
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Rollup 入门&url=http://yoursite.com/2020/01/17/rollup-入门/index.html&via=Junky" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Twitter
             </li>
@@ -441,7 +459,7 @@
 
     <!-- Share Facebook -->
     
-        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html" target="_blank">
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/01/17/rollup-入门/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Facebook
             </li>
@@ -450,7 +468,7 @@
 
     <!-- Share Google+ -->
     
-        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2019/12/28/redux-入门-01简单的状态管理/index.html" target="_blank">
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2020/01/17/rollup-入门/index.html" target="_blank">
             <li class="mdl-menu__item">
                 分享到 Google+
             </li>
@@ -475,7 +493,60 @@
                 <!-- Post Content -->
                 <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
     
-        <p>###1.</p>
+        <h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote>
+<p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。相比webpack, 生成的代码更加简洁，干净，代码可读性相对也更加良好。</p>
+</blockquote>
+<p>### </p>
+<p>###优势</p>
+<ol>
+<li>编译出来的代码<code>可读性好</code></li>
+<li>Rollup打包后生成的bundle内容十分<code>干净</code>，没有什么多余的代码，只是将各个模块按照依赖顺序拼接起来，所有模块构建在一个函数内（Scope Hoisting）, 执行效率更高。相比webpack(webpack打包后会生成<strong>webpack_require</strong>等runtime代码)，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，<code>编译时依赖处理（rollup）自然比运行时依赖处理（webpack）性能更好</code></li>
+<li>对于ES模块依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码(tree-shaking，下文会有具体解释)</li>
+<li>支持程序流分析，能更加正确的判断项目本身的代码是否有副作用(配合tree-shaking)</li>
+<li>支持导出<code>es</code>模块文件（webpack不支持导出es模块）</li>
+</ol>
+<h3 id="打包第一个js"><a href="#打包第一个js" class="headerlink" title="打包第一个js"></a>打包第一个js</h3><ol>
+<li>创建目录rollup_demo并用npm初始化<code>package.json</code></li>
+<li>使用npm全局安装Rollup ，安装Rollup<br> <code>npm install rollup -g</code> </li>
+<li><p>创建main.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">export default function helloWorld () &#123;</span><br><span class="line">	console.log(&apos;hello world~&apos;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>创建roll.config.js文件，使用以下配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  input: &apos;main.js&apos;, // 入口文件</span><br><span class="line">  output: &#123;</span><br><span class="line">    file: &apos;bundle.js&apos;,  // 打包的文件名</span><br><span class="line">    format: &apos;cjs&apos;  // 生成包的方式</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>控制台运行<code>rollup -c</code>命令，打包main.js</p>
+</li>
+<li>rollup在当前目录中生成<code>bundle.js</code> </li>
+</ol>
+<h3 id="rollup常见属性"><a href="#rollup常见属性" class="headerlink" title="rollup常见属性"></a>rollup常见属性</h3><h4 id="1-input-i-–input"><a href="#1-input-i-–input" class="headerlink" title="1. input(-i/–input)"></a>1. input(-i/–input)</h4><blockquote>
+<p>输入路径， 打包的入口相当于webpack entry</p>
+</blockquote>
+<h4 id="2-output-file-o-–output-file"><a href="#2-output-file-o-–output-file" class="headerlink" title="2. output.file(-o/–output.file)"></a>2. output.file(-o/–output.file)</h4><blockquote>
+<p>打包的输出的文件名</p>
+</blockquote>
+<h4 id="3-output-format-f-–output-format"><a href="#3-output-format-f-–output-format" class="headerlink" title="3. output.format(-f/–output.format)"></a>3. output.format(-f/–output.format)</h4><blockquote>
+<p><strong>生成的包的格式</strong></p>
+</blockquote>
+<ul>
+<li>amd – 异步模块定义，用于像RequireJS这样的模块加载器</li>
+<li>cjs – CommonJS，适用于 Node 和 Browserify/Webpack</li>
+<li>esm – 将软件包保存为 ES 模块文件，在现代浏览器中可以通过 <code>&lt;script type=module&gt;</code> 标签引入</li>
+<li>iife – 一个自动执行的功能，适合作为<code>&lt;script&gt;</code>标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）</li>
+<li>umd – 通用模块定义，以<code>amd</code>，<code>cjs</code> 和 <code>iife</code> 为一体</li>
+<li>system - SystemJS 加载器格式</li>
+</ul>
+<h4 id="4-output-name-n-–name"><a href="#4-output-name-n-–name" class="headerlink" title="4. output.name(-n/–name)"></a>4. output.name(-n/–name)</h4><blockquote>
+<p>包的变量名</p>
+<figure class="highlight plain"><figcaption><span>rollup.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">export default &#123;</span><br><span class="line">  ...,</span><br><span class="line">  output: &#123;</span><br><span class="line">    file: &apos;bundle.js&apos;,</span><br><span class="line">    format: &apos;iife&apos;,</span><br><span class="line">    name: &apos;MyBundle&apos;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line">// -&gt; var MyBundle = (function () &#123;...</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h4 id="5-plugin"><a href="#5-plugin" class="headerlink" title="5. plugin"></a>5. plugin</h4><blockquote>
+<p>插件</p>
+</blockquote>
+<h4 id="6-external"><a href="#6-external" class="headerlink" title="6. external"></a>6. external</h4><blockquote>
+<p>外部扩展</p>
+<figure class="highlight plain"><figcaption><span>rollup.config.js</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import path from &apos;path&apos;;</span><br><span class="line">export default &#123;</span><br><span class="line">  ...,</span><br><span class="line">  external: [</span><br><span class="line">    &apos;some-externally-required-library&apos;,</span><br><span class="line">    path.resolve( &apos;./src/some-local-file-that-should-not-be-bundled.js&apos; )</span><br><span class="line">  ]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>###常用的Rollup插件<br> ….</p>
 
         
     
@@ -496,21 +567,13 @@
             <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
     <!-- Prev Nav -->
     
-        <a href="/2020/01/17/rollup-入门/" id="post_nav-newer" class="prev-content">
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
-                <i class="material-icons">arrow_back</i>
-            </button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            新篇
-        </a>
-    
 
     <!-- Section Spacer -->
     <div class="section-spacer"></div>
 
     <!-- Next Nav -->
     
-        <a href="/2019/04/27/hello-world/" id="post_nav-older" class="next-content">
+        <a href="/2019/12/28/redux-入门-01简单的状态管理/" id="post_nav-older" class="next-content">
             旧篇
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
