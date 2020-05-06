@@ -46,8 +46,6 @@
     
     <title>
         
-            归档: 2020/1 | 
-        
         汪杨的个人日志
     </title>
 
@@ -218,7 +216,7 @@
     <!-- WebAPP Icons -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="汪杨的个人日志">
-    <meta name="msapplication-starturl" content="http://yoursite.com/archives/2020/01/">
+    <meta name="msapplication-starturl" content="http://yoursite.com/2020/05/06/移动端踩得那些坑/">
     <meta name="msapplication-navbutton-color" content="#0097A7">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-title" content="汪杨的个人日志">
@@ -233,13 +231,16 @@
     
 
     <!-- The Open Graph protocol -->
-    <meta property="og:url" content="http://yoursite.com/archives/2020/01/">
+    <meta property="og:url" content="http://yoursite.com/2020/05/06/移动端踩得那些坑/">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2020/1 | 汪杨的个人日志">
+    <meta property="og:title" content="汪杨的个人日志">
     <meta property="og:image" content="/img/favicon.png">
     <meta property="og:description" content>
     
 
+    
+        <meta property="article:published_time" content="Wed May 06 2020 12:13:20 GMT+0800">
+        <meta property="article:modified_time" content="Wed May 06 2020 12:13:20 GMT+0800">
     
 
     <!-- The Twitter Card protocol -->
@@ -247,13 +248,43 @@
 
     <!-- Add canonical link for SEO -->
     
-        <link rel="canonical" href="http://yoursite.com/archives/2020/01/index.html">
+        <link rel="canonical" href="http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html">
     
 
     <!-- Structured-data for SEO -->
     
         
 
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html",
+    "headline": "",
+    "datePublished": "Wed May 06 2020 12:13:20 GMT+0800",
+    "dateModified": "Wed May 06 2020 12:13:20 GMT+0800",
+    "author": {
+        "@type": "Person",
+        "name": "Junky",
+        "image": {
+            "@type": "ImageObject",
+            "url": "/img/avatar.png"
+        },
+        "description": "Hi, nice to meet you"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": "汪杨的个人日志",
+        "logo": {
+            "@type":"ImageObject",
+            "url": "/img/favicon.png"
+        }
+    },
+    "keywords": "",
+    "description": "",
+}
+</script>
 
 
     
@@ -287,93 +318,226 @@
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
-    <!-- Pin on top -->
+    
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+
+    <!-- Left aligned menu below button -->
+    
+    
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn" style="max-height:80vh; overflow-y:scroll;">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#移动端踩得那些坑"><span class="post-toc-number">1.</span> <span class="post-toc-text">移动端踩得那些坑</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#视频"><span class="post-toc-number">1.0.1.</span> <span class="post-toc-text">视频</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#canvas"><span class="post-toc-number">1.0.2.</span> <span class="post-toc-text">canvas</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#音频"><span class="post-toc-number">1.0.3.</span> <span class="post-toc-text">音频</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#软键盘弹出问题"><span class="post-toc-number">1.0.4.</span> <span class="post-toc-text">软键盘弹出问题</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#常用H5类库"><span class="post-toc-number">1.0.5.</span> <span class="post-toc-text">常用H5类库</span></a></li></ol></li></ol></li></ol>
+    </ul>
     
 
-    <!-- Normal Post -->
-    
-        
-            
-                <!-- Paradox Thumbnail -->
-                <div class="post_entry-module mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script type="text/ls-javascript" id="post-thumbnail-script">
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2020/01/17/rollup-入门/">Rollup 入门</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-            介绍
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2020/01/17/rollup-入门/" target="_self">阅读全文</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Junky's avatar">
-            </div>
-            <div>
-                <strong>Junky</strong>
-                <span>1月 17, 2020</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-          
-
-            
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-            
-            
-        
-    
-
-    
-
-    
-        <script type="text/ls-javascript" id="thumbnail-script">
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
+    $('.post_thumbnail-random').attr('data-original', '/img/random/material-' + randomNum + '.png');
     $('.post_thumbnail-random').addClass('lazy');
-
-        locatePost = locatePost.next();
-    }
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Junky</strong>
+        <span>5月 06, 2020</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+
+    <!-- Share -->
+    
+        <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=&url=http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html&pic=http://yoursite.com/img/favicon.png&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=&url=http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html&via=Junky" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com/2020/05/06/移动端踩得那些坑/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+
+    <!-- Share Telegram -->
+    
+</ul>
+
     
 </div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <h1 id="移动端踩得那些坑"><a href="#移动端踩得那些坑" class="headerlink" title="移动端踩得那些坑"></a>移动端踩得那些坑</h1><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>   ios视频无法允许自动播放，可用gif作为替换方案，或者首屏按钮加入点击按钮</p>
+<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><ul>
+<li><p>高分辨率某些手机机型会出现canvas绘制模糊情况，因为canvas元素依赖于设备像素比，所以绘制时宽高需要乘以实际宽高*dpr倍数  </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> getPixelRatio = <span class="function"><span class="keyword">function</span> (<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> backingStore = context.backingStorePixelRatio ||</span><br><span class="line">        context.webkitBackingStorePixelRatio ||</span><br><span class="line">        context.mozBackingStorePixelRatio ||</span><br><span class="line">        context.msBackingStorePixelRatio ||</span><br><span class="line">        context.oBackingStorePixelRatio ||</span><br><span class="line">        context.backingStorePixelRatio || <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> (<span class="built_in">window</span>.devicePixelRatio || <span class="number">1</span>) / backingStore;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> ratio = getPixelRatio(ctx);</span><br><span class="line">canvas.width = canvas.width * ratio;</span><br><span class="line">canvas.height = canvas.height * ratio;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>drawImage图片在某些机型可能会出现方向显示不正确情况，可使用exif.js 读取出图片元数据， 通过<code>EXIF.getTag(img, &#39;Orientation&#39;)</code> 获取原始图片旋转方向</p>
+</li>
+</ul>
+<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>   接入微信sdk后，音频需要等待sdk加载完毕,可再<code>DOMContentLoaded</code> 文档内容加载完毕之后 ，监听<code>WeixinJSBridgeReady</code> 事件</p>
+<h3 id="软键盘弹出问题"><a href="#软键盘弹出问题" class="headerlink" title="软键盘弹出问题"></a>软键盘弹出问题</h3><p>  某些机型，在软键盘弹出后，输入框位置与源位置会有变换，简单解决方法监听<code>focus</code> <code>blur</code>事件，<code>focus</code>记录当前滚动位置，<code>blur</code>再滚动到对应区域</p>
+<h3 id="常用H5类库"><a href="#常用H5类库" class="headerlink" title="常用H5类库"></a>常用H5类库</h3><ul>
+<li>animate.css</li>
+<li>wow.js</li>
+<li>exif.js  读取图像元数据</li>
+<li>pixi.js  快速简单的2D精灵渲染引擎</li>
+<li>Scrollerjs 滚动/缩放组件</li>
+</ul>
+
+        
+    
+
+    
+</div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2020/04/20/项目架构所要考虑的方向/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
