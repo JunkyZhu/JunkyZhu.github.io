@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>移动端踩得那些坑</title>
+    <link href="/2020/05/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B8%A9%E5%BE%97%E9%82%A3%E4%BA%9B%E5%9D%91/"/>
+    <url>/2020/05/06/%E7%A7%BB%E5%8A%A8%E7%AB%AF%E8%B8%A9%E5%BE%97%E9%82%A3%E4%BA%9B%E5%9D%91/</url>
+    
+    <content type="html"><![CDATA[<h2 id="移动端踩得那些坑"><a href="#移动端踩得那些坑" class="headerlink" title="移动端踩得那些坑"></a>移动端踩得那些坑</h2><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>   ios视频无法允许自动播放，可用gif作为替换方案，或者首屏按钮加入点击按钮</p><h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><ul><li><p>高分辨率某些手机机型会出现canvas绘制模糊情况，因为canvas元素依赖于设备像素比，所以绘制时宽高需要乘以实际宽高*dpr倍数  </p><pre><code class="hljs js"><span class="hljs-keyword">var</span> getPixelRatio = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;    <span class="hljs-keyword">var</span> backingStore = context.backingStorePixelRatio ||        context.webkitBackingStorePixelRatio ||        context.mozBackingStorePixelRatio ||        context.msBackingStorePixelRatio ||        context.oBackingStorePixelRatio ||        context.backingStorePixelRatio || <span class="hljs-number">1</span>;    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">window</span>.devicePixelRatio || <span class="hljs-number">1</span>) / backingStore;&#125;;<span class="hljs-keyword">var</span> ratio = getPixelRatio(ctx);canvas.width = canvas.width * ratio;canvas.height = canvas.height * ratio;</code></pre></li><li><p>drawImage图片在某些机型可能会出现方向显示不正确情况，可使用exif.js 读取出图片元数据， 通过<code>EXIF.getTag(img, &#39;Orientation&#39;)</code> 获取原始图片旋转方向</p></li></ul><h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>   接入微信sdk后，音频需要等待sdk加载完毕,可再<code>DOMContentLoaded</code> 文档内容加载完毕之后 ，监听<code>WeixinJSBridgeReady</code> 事件</p><h3 id="软键盘弹出问题"><a href="#软键盘弹出问题" class="headerlink" title="软键盘弹出问题"></a>软键盘弹出问题</h3><p>  某些机型，在软键盘弹出后，输入框位置与源位置会有变换，简单解决方法监听<code>focus</code> <code>blur</code>事件，<code>focus</code>记录当前滚动位置，<code>blur</code>再滚动到对应区域</p><h3 id="常用H5类库"><a href="#常用H5类库" class="headerlink" title="常用H5类库"></a>常用H5类库</h3><ul><li>animate.css</li><li>wow.js</li><li>exif.js  读取图像元数据</li><li>pixi.js  快速简单的2D精灵渲染引擎</li><li>Scrollerjs 滚动/缩放组件</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>H5</tag>
+      
+      <tag>js</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>项目架构所要考虑的方向</title>
+    <link href="/2020/04/20/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%89%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E6%96%B9%E5%90%91/"/>
+    <url>/2020/04/20/%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E6%89%80%E8%A6%81%E8%80%83%E8%99%91%E7%9A%84%E6%96%B9%E5%90%91/</url>
+    
+    <content type="html"><![CDATA[<h1 id="项目架构所要考虑的方向"><a href="#项目架构所要考虑的方向" class="headerlink" title="项目架构所要考虑的方向"></a>项目架构所要考虑的方向</h1><h2 id="1-项目管理"><a href="#1-项目管理" class="headerlink" title="1. 项目管理"></a>1. 项目管理</h2><p>  git / svn</p><h2 id="2-质量管控"><a href="#2-质量管控" class="headerlink" title="2. 质量管控"></a>2. 质量管控</h2><ul><li>单元测试 (mocha / jest)/ 集成测试</li><li>typescript 语法检查 -&gt; eslint</li><li>git hooks &amp; CI/CD</li></ul><h2 id="3-框架选型"><a href="#3-框架选型" class="headerlink" title="3. 框架选型"></a>3. 框架选型</h2><ol><li>小程序： uniapp ? 原生？ taro？ mpvue？</li><li>pc：react ? vue ？ </li></ol><h2 id="4-ui-样式"><a href="#4-ui-样式" class="headerlink" title="4. ui/样式"></a>4. ui/样式</h2><ol><li>框架：elementui ? antd ?  material ui?</li><li>语言： sass / less / css / postcss</li><li>风格类型： 自适应 ？ 固定布局</li><li>单位：px / rem / vw</li></ol><h2 id="5-环境搭建"><a href="#5-环境搭建" class="headerlink" title="5. 环境搭建"></a>5. 环境搭建</h2><p>  <code>production</code> / <code>test</code> / <code>development</code></p><h2 id="6-service"><a href="#6-service" class="headerlink" title="6. service"></a>6. service</h2><ul><li>request 类库选择、封装 -&gt;  <code>skytech-request</code></li><li>错误状态码处理</li><li>网络异常处理</li><li>登录逻辑、权限验证</li></ul><h2 id="7-页面布局"><a href="#7-页面布局" class="headerlink" title="7. 页面布局"></a>7. 页面布局</h2><ul><li>pc：横向导航/竖向导航/全局头部</li><li>mobile：tabbar</li><li>全局layout 组件</li></ul><h2 id="8-通用组件快速配置"><a href="#8-通用组件快速配置" class="headerlink" title="8. 通用组件快速配置"></a>8. 通用组件快速配置</h2><ul><li>图表封装 </li><li>列表请求 -&gt; 查询逻辑处理，分页处理，过滤条件，重新请求</li><li>表单 -&gt; 分组，表单联动(逻辑控制、显示/隐藏)，规则校验</li></ul><h2 id="9-日志监控"><a href="#9-日志监控" class="headerlink" title="9. 日志监控"></a>9. 日志监控</h2><ul><li>业务日志  -&gt;  sentry</li><li>代码异常 -&gt; debugger</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>js</tag>
+      
+      <tag>前端架构</tag>
+      
+      <tag>入门</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Rollup 入门</title>
+    <link href="/2020/01/17/rollup-%E5%85%A5%E9%97%A8/"/>
+    <url>/2020/01/17/rollup-%E5%85%A5%E9%97%A8/</url>
+    
+    <content type="html"><![CDATA[<h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><blockquote><p>Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。相比webpack, 生成的代码更加简洁，干净，代码可读性相对也更加良好。</p></blockquote><p>### </p><h3 id="优势"><a href="#优势" class="headerlink" title="优势"></a>优势</h3><ol><li>编译出来的代码<code>可读性好</code></li><li>Rollup打包后生成的bundle内容十分<code>干净</code>，没有什么多余的代码，只是将各个模块按照依赖顺序拼接起来，所有模块构建在一个函数内（Scope Hoisting）, 执行效率更高。相比webpack(webpack打包后会生成<strong>webpack_require</strong>等runtime代码)，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，<code>编译时依赖处理（rollup）自然比运行时依赖处理（webpack）性能更好</code></li><li>对于ES模块依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码(tree-shaking，下文会有具体解释)</li><li>支持程序流分析，能更加正确的判断项目本身的代码是否有副作用(配合tree-shaking)</li><li>支持导出<code>es</code>模块文件（webpack不支持导出es模块）</li></ol><h3 id="打包第一个js"><a href="#打包第一个js" class="headerlink" title="打包第一个js"></a>打包第一个js</h3><ol><li>创建目录rollup_demo并用npm初始化<code>package.json</code></li><li>使用npm全局安装Rollup ，安装Rollup<br> <code>npm install rollup -g</code> </li><li><p>创建main.js</p><pre><code class="hljs undefined">export default function helloWorld () &#123;console.log(&apos;hello world~&apos;)&#125;</code></pre></li><li><p>创建roll.config.js文件，使用以下配置</p><pre><code class="hljs undefined">export default &#123;  input: &apos;main.js&apos;, // 入口文件  output: &#123;    file: &apos;bundle.js&apos;,  // 打包的文件名    format: &apos;cjs&apos;  // 生成包的方式  &#125;&#125;;</code></pre></li><li><p>控制台运行<code>rollup -c</code>命令，打包main.js</p></li><li>rollup在当前目录中生成<code>bundle.js</code> </li></ol><h3 id="rollup常见属性"><a href="#rollup常见属性" class="headerlink" title="rollup常见属性"></a>rollup常见属性</h3><h4 id="1-input-i-–input"><a href="#1-input-i-–input" class="headerlink" title="1. input(-i/–input)"></a>1. input(-i/–input)</h4><blockquote><p>输入路径， 打包的入口相当于webpack entry</p></blockquote><h4 id="2-output-file-o-–output-file"><a href="#2-output-file-o-–output-file" class="headerlink" title="2. output.file(-o/–output.file)"></a>2. output.file(-o/–output.file)</h4><blockquote><p>打包的输出的文件名</p></blockquote><h4 id="3-output-format-f-–output-format"><a href="#3-output-format-f-–output-format" class="headerlink" title="3. output.format(-f/–output.format)"></a>3. output.format(-f/–output.format)</h4><blockquote><p><strong>生成的包的格式</strong></p></blockquote><ul><li>amd – 异步模块定义，用于像RequireJS这样的模块加载器</li><li>cjs – CommonJS，适用于 Node 和 Browserify/Webpack</li><li>esm – 将软件包保存为 ES 模块文件，在现代浏览器中可以通过 <code>&lt;script type=module&gt;</code> 标签引入</li><li>iife – 一个自动执行的功能，适合作为<code>&lt;script&gt;</code>标签。（如果要为应用程序创建一个捆绑包，您可能想要使用它，因为它会使文件大小变小。）</li><li>umd – 通用模块定义，以<code>amd</code>，<code>cjs</code> 和 <code>iife</code> 为一体</li><li>system - SystemJS 加载器格式</li></ul><h4 id="4-output-name-n-–name"><a href="#4-output-name-n-–name" class="headerlink" title="4. output.name(-n/–name)"></a>4. output.name(-n/–name)</h4><blockquote><p>包的变量名</p><pre><code class="hljs //">export default &#123;  ...,  output: &#123;    file: &apos;bundle.js&apos;,    format: &apos;iife&apos;,    name: &apos;MyBundle&apos;  &#125;&#125;;// -&gt; var MyBundle = (function () &#123;...</code></pre></blockquote><h4 id="5-plugin"><a href="#5-plugin" class="headerlink" title="5. plugin"></a>5. plugin</h4><blockquote><p>插件</p></blockquote><h4 id="6-external"><a href="#6-external" class="headerlink" title="6. external"></a>6. external</h4><blockquote><p>外部扩展</p><pre><code class="hljs //">import path from &apos;path&apos;;export default &#123;  ...,  external: [    &apos;some-externally-required-library&apos;,    path.resolve( &apos;./src/some-local-file-that-should-not-be-bundled.js&apos; )  ]&#125;;</code></pre></blockquote><h3 id="常用的Rollup插件"><a href="#常用的Rollup插件" class="headerlink" title="常用的Rollup插件"></a>常用的Rollup插件</h3><p> ….</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>rollup</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redux 入门 - 01简单的状态管理</title>
+    <link href="/2019/12/28/redux-%E5%85%A5%E9%97%A8-01%E7%AE%80%E5%8D%95%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/"/>
+    <url>/2019/12/28/redux-%E5%85%A5%E9%97%A8-01%E7%AE%80%E5%8D%95%E7%9A%84%E7%8A%B6%E6%80%81%E7%AE%A1%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>
