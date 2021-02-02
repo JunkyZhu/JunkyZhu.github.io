@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="Junky">
   <meta name="keywords" content="前端,JavaScript">
-  <title>Junky</title>
+  <title>网页性能优化 - Junky</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -177,8 +177,7 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <p>##网页性能优化</p>
-<h3 id="1-服务器端响应速度，可能的原因有-cpu算力、硬盘内存读写、数据库读写"><a href="#1-服务器端响应速度，可能的原因有-cpu算力、硬盘内存读写、数据库读写" class="headerlink" title="1. 服务器端响应速度，可能的原因有 cpu算力、硬盘内存读写、数据库读写"></a>1. 服务器端响应速度，可能的原因有 cpu算力、硬盘内存读写、数据库读写</h3><pre><code>常见优化手段： 升级服务器配置、优化服务器相关代码、优化sql、加缓存
+              <h2 id="网页性能优化"><a href="#网页性能优化" class="headerlink" title="网页性能优化"></a>网页性能优化</h2><h3 id="1-服务器端响应速度，可能的原因有-cpu算力、硬盘内存读写、数据库读写"><a href="#1-服务器端响应速度，可能的原因有-cpu算力、硬盘内存读写、数据库读写" class="headerlink" title="1. 服务器端响应速度，可能的原因有 cpu算力、硬盘内存读写、数据库读写"></a>1. 服务器端响应速度，可能的原因有 cpu算力、硬盘内存读写、数据库读写</h3><pre><code>常见优化手段： 升级服务器配置、优化服务器相关代码、优化sql、加缓存
 </code></pre><h3 id="2-网络传输速度（服务器带宽、客户端带宽、运营商节点、传输位置）"><a href="#2-网络传输速度（服务器带宽、客户端带宽、运营商节点、传输位置）" class="headerlink" title="2. 网络传输速度（服务器带宽、客户端带宽、运营商节点、传输位置）"></a>2. 网络传输速度（服务器带宽、客户端带宽、运营商节点、传输位置）</h3><pre><code>升级服务器带宽、CDN加速、请求缓存、gzip
 </code></pre><h3 id="3-客户端渲染速度（文件大、逻辑复杂、重排-amp-重绘频繁）"><a href="#3-客户端渲染速度（文件大、逻辑复杂、重排-amp-重绘频繁）" class="headerlink" title="3. 客户端渲染速度（文件大、逻辑复杂、重排&amp;重绘频繁）"></a>3. 客户端渲染速度（文件大、逻辑复杂、重排&amp;重绘频繁）</h3><ul>
 <li>webpack优化：路由懒加载、组件懒加载 -&gt;babel-plugin-syntax-dynamic-import &amp; webpack SplitChunksPlugin、组件库按需加载 -&gt; babel-plugin-import</li>
@@ -198,6 +197,13 @@
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/前端架构/">前端架构</a>
+                    
+                  </div>
                 
               </div>
               
@@ -219,7 +225,7 @@
                     
                     
                       <a href="/2020/11/13/Sentry介绍/">
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">Sentry</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -359,7 +365,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "&nbsp;",
+        "网页性能优化&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

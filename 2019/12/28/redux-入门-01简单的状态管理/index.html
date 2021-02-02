@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="Junky">
   <meta name="keywords" content="前端,JavaScript">
-  <title>redux 入门 - 01简单的状态管理 - Junky</title>
+  <title>redux 入门 - Junky</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    1 字
+                    739 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    1
+                    14
                      分钟
                   </span>
                 
@@ -177,12 +177,312 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3>
+              <h2 id="redux"><a href="#redux" class="headerlink" title="redux"></a>redux</h2><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">initState</span>) </span>&#123;
+	<span class="hljs-keyword">let</span> state = &#123;&#125;
+	<span class="hljs-keyword">let</span> listeners = []
+	<span class="hljs-keyword">let</span> subscribe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">listener</span>) </span>&#123;
+		listeners.push(listener)
+	&#125;
+
+	<span class="hljs-keyword">let</span> changeState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">newState</span>) </span>&#123;
+		state = newState
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+			listeners[i]()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">let</span> getState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> state
+	&#125;
+	<span class="hljs-keyword">return</span> &#123;
+		subscribe,
+		changeState,
+		getState
+	&#125;
+&#125;
+
+<span class="hljs-comment">// let initState = &#123;</span>
+<span class="hljs-comment">// 	count: 0,</span>
+<span class="hljs-comment">// 	info: &#123;</span>
+<span class="hljs-comment">// 		name: 'a',</span>
+<span class="hljs-comment">// 		gender: 'male'</span>
+<span class="hljs-comment">// 	&#125;</span>
+<span class="hljs-comment">// &#125;</span>
+<span class="hljs-comment">// let &#123;getState, changeState, subscribe&#125; = createStore(initState)</span>
+<span class="hljs-comment">// subscribe(function() &#123;</span>
+<span class="hljs-comment">// 	console.log('监听到了')</span>
+<span class="hljs-comment">// 	console.log(getState())</span>
+<span class="hljs-comment">// &#125;)</span>
+<span class="hljs-comment">// changeState(&#123;</span>
+<span class="hljs-comment">// 	...getState(),</span>
+<span class="hljs-comment">// 	count: 1</span>
+<span class="hljs-comment">// &#125;)</span>
+<span class="hljs-comment">// changeState(&#123;</span>
+<span class="hljs-comment">// 	...getState(),</span>
+<span class="hljs-comment">// 	info: &#123;</span>
+<span class="hljs-comment">// 		name: 'b',</span>
+<span class="hljs-comment">// 		gender: 'female'</span>
+<span class="hljs-comment">// 	&#125;</span>
+<span class="hljs-comment">// &#125;)</span>
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">plan</span>(<span class="hljs-params">state, action</span>) </span>&#123;
+	<span class="hljs-keyword">switch</span>(action.type) &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'INCREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-attr">case</span>: <span class="hljs-string">'DECREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-attr">default</span>: 
+			<span class="hljs-keyword">return</span> state
+	&#125;
+		
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">plan, initState</span>) </span>&#123; <span class="hljs-comment">//有计划</span>
+	<span class="hljs-keyword">let</span> state = &#123;&#125;
+	<span class="hljs-keyword">let</span> listeners = []
+	<span class="hljs-keyword">let</span> subscribe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">listener</span>) </span>&#123;
+		listeners.push(listener)
+	&#125;
+
+	<span class="hljs-keyword">let</span> changeState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">action</span>) </span>&#123;
+		state = plan(state, action)
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+			listeners[i]()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">let</span> getState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> state
+	&#125;
+	<span class="hljs-keyword">return</span> &#123;
+		subscribe,
+		changeState,
+		getState
+	&#125;
+&#125;
+
+<span class="hljs-comment">/****change name*****/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countReducer</span>(<span class="hljs-params">state, action</span>) </span>&#123;
+	<span class="hljs-keyword">switch</span>(action.type) &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'INCREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-attr">case</span>: <span class="hljs-string">'DECREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-attr">default</span>: 
+			<span class="hljs-keyword">return</span> state
+	&#125;
+		
+&#125;
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">reducer, initState</span>) </span>&#123; <span class="hljs-comment">//有计划</span>
+	<span class="hljs-keyword">let</span> state = &#123;&#125;
+	<span class="hljs-keyword">let</span> listeners = []
+	<span class="hljs-keyword">let</span> subscribe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">listener</span>) </span>&#123;
+		listeners.push(listener)
+	&#125;
+
+	<span class="hljs-keyword">let</span> dispatch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">action</span>) </span>&#123;
+		state = reducer(state, action)
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+			listeners[i]()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">let</span> getState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> state
+	&#125;
+	<span class="hljs-keyword">return</span> &#123;
+		subscribe,
+		dispatch,
+		getState
+	&#125;
+&#125;
+
+
+
+
+<span class="hljs-comment">/******多状态协作*****/</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countReducer</span>(<span class="hljs-params">state = <span class="hljs-number">0</span>, action</span>) </span>&#123;
+	<span class="hljs-keyword">switch</span>(action.type) &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'INCREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'DECREMENT'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">count</span>: state.count + <span class="hljs-number">1</span>
+			&#125;
+		<span class="hljs-attr">default</span>: 
+			<span class="hljs-keyword">return</span> state
+	&#125;
+		
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">infoReducer</span>(<span class="hljs-params">state = &#123;name: <span class="hljs-string">'123'</span>, gender: <span class="hljs-string">'ab'</span>&#125;, action</span>) </span>&#123;
+	<span class="hljs-keyword">switch</span>(action.type) &#123;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'CHANGENAME'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">name</span>: action.name
+			&#125;
+		<span class="hljs-keyword">case</span> <span class="hljs-string">'CHANGEGENDER'</span>:
+			<span class="hljs-keyword">return</span> &#123;
+				...state,
+				<span class="hljs-attr">gender</span>: action.gender
+			&#125;
+		<span class="hljs-attr">default</span>: 
+			<span class="hljs-keyword">return</span> state
+	&#125;
+		
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">combineReducer</span>(<span class="hljs-params">reducers</span>) </span>&#123; <span class="hljs-comment">//合并reducers</span>
+	<span class="hljs-keyword">const</span> reducerKeys = <span class="hljs-built_in">Object</span>.keys(reducers)
+	
+	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">state = &#123;&#125;, action</span>) </span>&#123;
+		<span class="hljs-keyword">let</span> nextState = &#123;&#125;
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; reducerKeys.length; i++) &#123;
+			<span class="hljs-keyword">const</span> key = reducerKeys[i]
+			<span class="hljs-keyword">const</span> reducer = reducers[key]
+			<span class="hljs-keyword">const</span> previousState = state[key]
+			<span class="hljs-keyword">const</span> nextKeyState = reducer(previousState, action)
+			nextState[key] = nextKeyState
+		&#125;
+		<span class="hljs-keyword">return</span> nextState
+	&#125;
+&#125;
+
+<span class="hljs-keyword">const</span> reducer = combineReducer(&#123;
+	<span class="hljs-attr">count</span>: countReducer,
+	<span class="hljs-attr">info</span>: infoReducer
+&#125;)
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">reducer, initState</span>) </span>&#123; <span class="hljs-comment">//有计划</span>
+	<span class="hljs-keyword">let</span> state = initState
+	<span class="hljs-keyword">let</span> listeners = []
+	<span class="hljs-keyword">let</span> subscribe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">listener</span>) </span>&#123;
+		listeners.push(listener)
+	&#125;
+
+	<span class="hljs-keyword">let</span> dispatch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">action</span>) </span>&#123;
+		state = reducer(state, action)
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+			listeners[i]()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">let</span> getState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> state
+	&#125;
+	dispatch(&#123;<span class="hljs-attr">type</span>: <span class="hljs-built_in">Symbol</span>()&#125;)
+	<span class="hljs-keyword">return</span> &#123;
+		subscribe,
+		dispatch,
+		getState
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> store = createStore(reducer)
+<span class="hljs-keyword">const</span> next = store.dispatch
+
+store.dispatch = <span class="hljs-function">(<span class="hljs-params">action</span>) =&gt;</span> &#123;
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ before state -------'</span>)
+	<span class="hljs-built_in">console</span>.log(store.getState())
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ action -------'</span>)
+	<span class="hljs-built_in">console</span>.log(action)
+	next(action)
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ after state -------'</span>)
+	<span class="hljs-built_in">console</span>.log(store.getState())
+&#125;
+
+<span class="hljs-keyword">let</span> loggerMiddleware = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ before state -------'</span>)
+	<span class="hljs-built_in">console</span>.log(store.getState())
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ action -------'</span>)
+	next(action)
+	<span class="hljs-built_in">console</span>.log(<span class="hljs-string">'------ after state -------'</span>)
+	<span class="hljs-built_in">console</span>.log(store.getState())
+&#125;
+<span class="hljs-keyword">let</span> expectionMiddleware = <span class="hljs-function"><span class="hljs-params">store</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">next</span> =&gt;</span> <span class="hljs-function"><span class="hljs-params">action</span> =&gt;</span> &#123;
+	<span class="hljs-keyword">try</span> &#123;
+		next(action)
+	&#125; <span class="hljs-keyword">catch</span>(e) &#123;
+		<span class="hljs-built_in">console</span>.log(e)
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> logger = loggerMiddleware(store);
+<span class="hljs-keyword">const</span> expection = expectionMiddleware(store);
+
+store.dispatch = expection(logger(next))
+
+
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createStore</span>(<span class="hljs-params">reducer, initState, rewriteStore</span>) </span>&#123; <span class="hljs-comment">//有计划</span>
+	<span class="hljs-keyword">let</span> state = initState
+	<span class="hljs-keyword">let</span> listeners = []
+	<span class="hljs-keyword">if</span> (rewriteStore) &#123;
+		<span class="hljs-keyword">const</span> newCreateStore = rewriteStore(createStore);
+		<span class="hljs-keyword">return</span> newCreateStore(reducer, initState)
+	&#125;
+	<span class="hljs-keyword">let</span> subscribe = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">listener</span>) </span>&#123;
+		listeners.push(listener)
+	&#125;
+
+	<span class="hljs-keyword">let</span> dispatch = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">action</span>) </span>&#123;
+		state = reducer(state, action)
+		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; listeners.length; i++) &#123;
+			listeners[i]()
+		&#125;
+	&#125;
+	<span class="hljs-keyword">let</span> getState = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;
+		<span class="hljs-keyword">return</span> state
+	&#125;
+	dispatch(&#123;<span class="hljs-attr">type</span>: <span class="hljs-built_in">Symbol</span>()&#125;)
+	<span class="hljs-keyword">return</span> &#123;
+		subscribe,
+		dispatch,
+		getState
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> applyMiddleware = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">...middlewares</span>) </span>&#123;
+	<span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-params">createStore</span> =&gt;</span> <span class="hljs-function">(<span class="hljs-params">reducer, initState</span>) =&gt;</span> &#123;
+		<span class="hljs-keyword">const</span> store = createStore(reducer, initState)
+		<span class="hljs-keyword">let</span> dispatch = store.dispatch
+		<span class="hljs-keyword">let</span> chain = middlewares.map(<span class="hljs-function"><span class="hljs-params">middleware</span> =&gt;</span> middleware(store))
+		chain.reverse().map(<span class="hljs-function"><span class="hljs-params">middleware</span> =&gt;</span> &#123;
+			dispatch = middleware(dispatch)
+		&#125;) 
+		store.dispatch = dispatch
+		<span class="hljs-keyword">return</span> store
+	&#125;
+&#125;
+<span class="hljs-keyword">const</span> store = createStore(reducer, <span class="hljs-literal">null</span>, applyMiddleware(loggerMiddleware, expectionMiddleware))</code></pre>
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/redux/">redux</a>
+                    
+                  </div>
                 
               </div>
               
@@ -338,7 +638,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "redux 入门 - 01简单的状态管理&nbsp;",
+        "redux 入门&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
