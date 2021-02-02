@@ -1,14 +1,14 @@
 ---
 title: Rollup 入门
 date: 2020-01-17 14:29:36
-tags: Rollup入门
+tags: rollup
 ---
 
 ### 介绍
 > Rollup 是一个 JavaScript 模块打包器，可以将小块代码编译成大块复杂的代码，例如 library 或应用程序。相比webpack, 生成的代码更加简洁，干净，代码可读性相对也更加良好。
 ### 
 
-###优势
+### 优势
 1. 编译出来的代码`可读性好`
 2. Rollup打包后生成的bundle内容十分`干净`，没有什么多余的代码，只是将各个模块按照依赖顺序拼接起来，所有模块构建在一个函数内（Scope Hoisting）, 执行效率更高。相比webpack(webpack打包后会生成__webpack_require__等runtime代码)，Rollup拥有无可比拟的性能优势，这是由依赖处理方式决定的，`编译时依赖处理（rollup）自然比运行时依赖处理（webpack）性能更好`
 3. 对于ES模块依赖库，Rollup会静态分析代码中的 import，并将排除任何未实际使用的代码(tree-shaking，下文会有具体解释)
@@ -92,6 +92,5 @@ export default {
 };
 ```
 
-
-###常用的Rollup插件
+### 常用的Rollup插件
  ....
