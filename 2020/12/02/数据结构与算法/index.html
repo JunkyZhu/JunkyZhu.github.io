@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="Junky">
   <meta name="keywords" content="前端,JavaScript">
-  <title>移动端踩得那些坑 - Junky</title>
+  <title>JS 常见面试题 - Junky</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -127,8 +127,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-06 12:13">
-                    2020年5月6日 中午
+                  <time datetime="2020-12-02 16:40">
+                    2020年12月2日 下午
                   </time>
                 </div>
               
@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    324 字
+                    396 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    3
+                    4
                      分钟
                   </span>
                 
@@ -177,49 +177,18 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="移动端踩得那些坑"><a href="#移动端踩得那些坑" class="headerlink" title="移动端踩得那些坑"></a>移动端踩得那些坑</h2><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>   ios视频无法允许自动播放，可用gif作为替换方案，或者首屏按钮加入点击按钮</p>
-<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><ul>
-<li><p>高分辨率某些手机机型会出现canvas绘制模糊情况，因为canvas元素依赖于设备像素比，所以绘制时宽高需要乘以实际宽高*dpr倍数  </p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> getPixelRatio = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;
-    <span class="hljs-keyword">var</span> backingStore = context.backingStorePixelRatio ||
-        context.webkitBackingStorePixelRatio ||
-        context.mozBackingStorePixelRatio ||
-        context.msBackingStorePixelRatio ||
-        context.oBackingStorePixelRatio ||
-        context.backingStorePixelRatio || <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">window</span>.devicePixelRatio || <span class="hljs-number">1</span>) / backingStore;
-&#125;;
-<span class="hljs-keyword">var</span> ratio = getPixelRatio(ctx);
-canvas.width = canvas.width * ratio;
-canvas.height = canvas.height * ratio;</code></pre>
-</li>
-<li><p>drawImage图片在某些机型可能会出现方向显示不正确情况，可使用exif.js 读取出图片元数据， 通过<code>EXIF.getTag(img, &#39;Orientation&#39;)</code> 获取原始图片旋转方向</p>
-</li>
-</ul>
-<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>   接入微信sdk后，音频需要等待sdk加载完毕,可再<code>DOMContentLoaded</code> 文档内容加载完毕之后 ，监听<code>WeixinJSBridgeReady</code> 事件</p>
-<h3 id="软键盘弹出问题"><a href="#软键盘弹出问题" class="headerlink" title="软键盘弹出问题"></a>软键盘弹出问题</h3><p>  某些机型，在软键盘弹出后，输入框位置与源位置会有变换，简单解决方法监听<code>focus</code> <code>blur</code>事件，<code>focus</code>记录当前滚动位置，<code>blur</code>再滚动到对应区域</p>
-<h3 id="常用H5类库"><a href="#常用H5类库" class="headerlink" title="常用H5类库"></a>常用H5类库</h3><ul>
-<li>animate.css</li>
-<li>wow.js</li>
-<li>exif.js  读取图像元数据</li>
-<li>pixi.js  快速简单的2D精灵渲染引擎</li>
-<li>Scrollerjs 滚动/缩放组件</li>
-</ul>
-
+              <h3 id="一、线性表（链表）"><a href="#一、线性表（链表）" class="headerlink" title="一、线性表（链表）"></a>一、线性表（链表）</h3><pre><code>单向链表、双向链表、环形链表
+常见问题： 反转链表、查找链表中最大值、链表是否有环
+</code></pre><h3 id="二、栈（先进后出）"><a href="#二、栈（先进后出）" class="headerlink" title="二、栈（先进后出）"></a>二、栈（先进后出）</h3><pre><code>常见问题： 判断字符串是否合法&apos;(){}[]&apos;; 
+浏览器前进后退功能、利用栈进行用户访问信息
+</code></pre><h3 id="三、队列（先进先出）"><a href="#三、队列（先进先出）" class="headerlink" title="三、队列（先进先出）"></a>三、队列（先进先出）</h3><pre><code>约瑟夫环问题；时钟
+</code></pre><h3 id="四、数组"><a href="#四、数组" class="headerlink" title="四、数组"></a>四、数组</h3><h3 id="五、字符串"><a href="#五、字符串" class="headerlink" title="五、字符串"></a>五、字符串</h3><pre><code>字符串查找子串问题、字符串查找公共字符问题、字符串翻转问题
+</code></pre><h3 id="六、树、二叉树"><a href="#六、树、二叉树" class="headerlink" title="六、树、二叉树"></a>六、树、二叉树</h3><h3 id="七、哈希表"><a href="#七、哈希表" class="headerlink" title="七、哈希表"></a>七、哈希表</h3><h3 id="算法思维-递归、分治、排序、动态规划"><a href="#算法思维-递归、分治、排序、动态规划" class="headerlink" title="算法思维 递归、分治、排序、动态规划"></a>算法思维 递归、分治、排序、动态规划</h3><h3 id="1-输入一个链表，反转链表后，输出新链表的表头。"><a href="#1-输入一个链表，反转链表后，输出新链表的表头。" class="headerlink" title="1. 输入一个链表，反转链表后，输出新链表的表头。"></a>1. 输入一个链表，反转链表后，输出新链表的表头。</h3><h3 id="2-一个很长很长的数组里，如何快速的找到第2大的数，注意时间复杂度和空间复杂度？"><a href="#2-一个很长很长的数组里，如何快速的找到第2大的数，注意时间复杂度和空间复杂度？" class="headerlink" title="2. 一个很长很长的数组里，如何快速的找到第2大的数，注意时间复杂度和空间复杂度？"></a>2. 一个很长很长的数组里，如何快速的找到第2大的数，注意时间复杂度和空间复杂度？</h3><h3 id="3-一个单向链表，判断链表中是否存在环，如果存在环找到环的入口位置并返回，如果不存在环则返回空。"><a href="#3-一个单向链表，判断链表中是否存在环，如果存在环找到环的入口位置并返回，如果不存在环则返回空。" class="headerlink" title="3. 一个单向链表，判断链表中是否存在环，如果存在环找到环的入口位置并返回，如果不存在环则返回空。"></a>3. 一个单向链表，判断链表中是否存在环，如果存在环找到环的入口位置并返回，如果不存在环则返回空。</h3><h3 id="4-在一次选举投票中，有一个候选人的投票超过了50-，在选票中找出这个候选人。（选票上为候选人的编号，范围为从1-500000）"><a href="#4-在一次选举投票中，有一个候选人的投票超过了50-，在选票中找出这个候选人。（选票上为候选人的编号，范围为从1-500000）" class="headerlink" title="4. 在一次选举投票中，有一个候选人的投票超过了50%，在选票中找出这个候选人。（选票上为候选人的编号，范围为从1-500000）"></a>4. 在一次选举投票中，有一个候选人的投票超过了50%，在选票中找出这个候选人。（选票上为候选人的编号，范围为从1-500000）</h3><h3 id="5-给定不同面额的硬币-coins-和一个总金额-amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数，假设每种面值的硬币都有足够数量可供选择。考虑两种情况一种coins如果固定为-1-2-5-如何解答，第二种coins不限制如何解答。"><a href="#5-给定不同面额的硬币-coins-和一个总金额-amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数，假设每种面值的硬币都有足够数量可供选择。考虑两种情况一种coins如果固定为-1-2-5-如何解答，第二种coins不限制如何解答。" class="headerlink" title="5. 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数，假设每种面值的硬币都有足够数量可供选择。考虑两种情况一种coins如果固定为[1,2,5]如何解答，第二种coins不限制如何解答。"></a>5. 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数，假设每种面值的硬币都有足够数量可供选择。考虑两种情况一种coins如果固定为[1,2,5]如何解答，第二种coins不限制如何解答。</h3>
             </article>
             <hr>
             <div>
               <div class="post-metas mb-3">
                 
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
-                    
-                      <a class="hover-with-bg" href="/tags/H5/">H5</a>
-                    
-                  </div>
                 
               </div>
               
@@ -230,9 +199,9 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/31/js 常见排序/">
+                      <a href="/2020/12/02/手写promise/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">js常见排序算法</span>
+                        <span class="hidden-mobile">手写promise</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -240,8 +209,8 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/20/项目架构所要考虑的方向/">
-                        <span class="hidden-mobile">项目架构所要考虑的方向</span>
+                      <a href="/2020/12/02/js常见面试题/">
+                        <span class="hidden-mobile">JS 常见面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -381,7 +350,7 @@ canvas.height = canvas.height * ratio;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "移动端踩得那些坑&nbsp;",
+        "JS 常见面试题&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="Junky">
   <meta name="keywords" content="前端,JavaScript">
-  <title>移动端踩得那些坑 - Junky</title>
+  <title>js常见排序算法 - Junky</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -127,8 +127,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-06 12:13">
-                    2020年5月6日 中午
+                  <time datetime="2020-08-31 17:19">
+                    2020年8月31日 下午
                   </time>
                 </div>
               
@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    324 字
+                    470 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    3
+                    7
                      分钟
                   </span>
                 
@@ -177,34 +177,119 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="移动端踩得那些坑"><a href="#移动端踩得那些坑" class="headerlink" title="移动端踩得那些坑"></a>移动端踩得那些坑</h2><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>   ios视频无法允许自动播放，可用gif作为替换方案，或者首屏按钮加入点击按钮</p>
-<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><ul>
-<li><p>高分辨率某些手机机型会出现canvas绘制模糊情况，因为canvas元素依赖于设备像素比，所以绘制时宽高需要乘以实际宽高*dpr倍数  </p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> getPixelRatio = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;
-    <span class="hljs-keyword">var</span> backingStore = context.backingStorePixelRatio ||
-        context.webkitBackingStorePixelRatio ||
-        context.mozBackingStorePixelRatio ||
-        context.msBackingStorePixelRatio ||
-        context.oBackingStorePixelRatio ||
-        context.backingStorePixelRatio || <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">window</span>.devicePixelRatio || <span class="hljs-number">1</span>) / backingStore;
-&#125;;
-<span class="hljs-keyword">var</span> ratio = getPixelRatio(ctx);
-canvas.width = canvas.width * ratio;
-canvas.height = canvas.height * ratio;</code></pre>
-</li>
-<li><p>drawImage图片在某些机型可能会出现方向显示不正确情况，可使用exif.js 读取出图片元数据， 通过<code>EXIF.getTag(img, &#39;Orientation&#39;)</code> 获取原始图片旋转方向</p>
-</li>
-</ul>
-<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>   接入微信sdk后，音频需要等待sdk加载完毕,可再<code>DOMContentLoaded</code> 文档内容加载完毕之后 ，监听<code>WeixinJSBridgeReady</code> 事件</p>
-<h3 id="软键盘弹出问题"><a href="#软键盘弹出问题" class="headerlink" title="软键盘弹出问题"></a>软键盘弹出问题</h3><p>  某些机型，在软键盘弹出后，输入框位置与源位置会有变换，简单解决方法监听<code>focus</code> <code>blur</code>事件，<code>focus</code>记录当前滚动位置，<code>blur</code>再滚动到对应区域</p>
-<h3 id="常用H5类库"><a href="#常用H5类库" class="headerlink" title="常用H5类库"></a>常用H5类库</h3><ul>
-<li>animate.css</li>
-<li>wow.js</li>
-<li>exif.js  读取图像元数据</li>
-<li>pixi.js  快速简单的2D精灵渲染引擎</li>
-<li>Scrollerjs 滚动/缩放组件</li>
-</ul>
+              <h2 id="js常见排序算法"><a href="#js常见排序算法" class="headerlink" title="js常见排序算法"></a>js常见排序算法</h2><h3 id="1-冒泡排序"><a href="#1-冒泡排序" class="headerlink" title="1. 冒泡排序"></a>1. 冒泡排序</h3><pre><code class="hljs javascript"><span class="hljs-comment">//两次for循环, 第一次从后往前遍历, 第二次遍历到一个位置</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bubbleSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = arr.length - <span class="hljs-number">1</span>; i &gt;= <span class="hljs-number">0</span>; i--) &#123;
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> j = <span class="hljs-number">0</span>; j &lt; i; j++) &#123;
+      <span class="hljs-keyword">if</span> (arr[i] &gt; arr[j]) &#123;
+        [arr[i], arr[j]] = [arr[j], arr[i]]
+      &#125;
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> arr
+&#125;</code></pre>
+<h3 id="2-快速排序"><a href="#2-快速排序" class="headerlink" title="2. 快速排序"></a>2. 快速排序</h3><pre><code class="hljs javascript"><span class="hljs-comment">// 选择一个值作为中点, 大于值的往右,小于的往左</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">quickSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (arr.length &lt;= <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">return</span> arr
+  &#125;
+  <span class="hljs-keyword">let</span> flag = arr.splice(<span class="hljs-built_in">Math</span>.floor(arr.length / <span class="hljs-number">2</span>),<span class="hljs-number">1</span>)[<span class="hljs-number">0</span>]
+  <span class="hljs-keyword">let</span> left = [];
+  <span class="hljs-keyword">let</span> right = []
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">var</span> i = <span class="hljs-number">0</span>; i &lt; arr.length; i++) &#123;
+    <span class="hljs-keyword">if</span> (arr[i] &lt; flag) &#123;
+      left.push(arr[i])
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      right.push(arr[i])
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> quickSort(left).concat([flag], quickSort(right))
+&#125;</code></pre>
+<h3 id="3-归并排序"><a href="#3-归并排序" class="headerlink" title="3. 归并排序"></a>3. 归并排序</h3><pre><code class="hljs javascript"><span class="hljs-comment">// 数组一分为二, 从最小粒度开始,左右数组对比,依次插入新的数组返回 </span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">mergeSort</span>(<span class="hljs-params">arr</span>) </span>&#123;
+  <span class="hljs-keyword">if</span> (arr.length &lt;= <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">return</span> arr
+  &#125;
+  <span class="hljs-keyword">let</span> flag = <span class="hljs-built_in">Math</span>.floor(arr.length / <span class="hljs-number">2</span>)
+  <span class="hljs-keyword">let</span> left = arr.slice(<span class="hljs-number">0</span>, flag);
+  <span class="hljs-keyword">let</span> right = arr.slice(flag)
+  <span class="hljs-keyword">return</span> merge(mergeSort(left), mergeSort(right))
+&#125;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">merge</span>(<span class="hljs-params">left, right</span>) </span>&#123;
+  <span class="hljs-keyword">let</span> arr = []
+  <span class="hljs-keyword">while</span>(left.length &amp;&amp; right.length) &#123;
+    <span class="hljs-keyword">if</span> (left[<span class="hljs-number">0</span>] &lt; right[<span class="hljs-number">0</span>]) &#123;
+      arr.push(left.shift())
+    &#125; <span class="hljs-keyword">else</span> &#123;
+      arr.push(right.shift())
+    &#125;
+  &#125;
+  <span class="hljs-keyword">return</span> arr.concat(left, right)
+
+&#125;</code></pre>
+<h3 id="4-插入排序"><a href="#4-插入排序" class="headerlink" title="4.插入排序"></a>4.插入排序</h3><pre><code class="hljs javascript"><span class="hljs-comment">//类似摸扑克牌,每次拿一个数,从尾到头查找</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">insertSort</span>(<span class="hljs-params">arr</span>) </span>&#123; 
+  <span class="hljs-keyword">if</span> (arr.length &lt;= <span class="hljs-number">1</span>) &#123;
+    <span class="hljs-keyword">return</span> arr
+  &#125;
+  <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">1</span>; i &lt; arr.length; i++) &#123;
+    <span class="hljs-keyword">let</span> current = arr[i];
+    j = i - <span class="hljs-number">1</span>
+    <span class="hljs-keyword">while</span>(j &gt; <span class="hljs-number">0</span> &amp;&amp; arr[j] &gt; current) &#123;
+      arr[j + <span class="hljs-number">1</span>] = arr[j];
+      j--
+    &#125;
+    arr[j + <span class="hljs-number">1</span>] = current
+  &#125;
+  <span class="hljs-keyword">return</span> arr
+&#125;</code></pre>
+<h3 id="排序对比"><a href="#排序对比" class="headerlink" title="排序对比"></a>排序对比</h3><table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>最好时间复杂度</th>
+<th>最坏时间复杂度</th>
+<th>平均时间复杂度</th>
+<th>空间复杂度</th>
+<th>是否稳定</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>O(nlogn)</td>
+<td>O(n^2)</td>
+<td>O(nlogn)</td>
+<td>O(1)最好：O(logn); 最坏： O(n)</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(nlogn)</td>
+<td>O(n)</td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n)</td>
+<td>O(n^2)</td>
+<td>O(n^2)</td>
+<td>O(1)</td>
+<td>稳定</td>
+</tr>
+</tbody>
+</table>
 
             </article>
             <hr>
@@ -215,9 +300,9 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                      <a class="hover-with-bg" href="/tags/算法/">算法</a>
                     
-                      <a class="hover-with-bg" href="/tags/H5/">H5</a>
+                      <a class="hover-with-bg" href="/tags/js/">js</a>
                     
                   </div>
                 
@@ -230,9 +315,9 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/31/js 常见排序/">
+                      <a href="/2020/11/13/Sentry介绍/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">js常见排序算法</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -240,8 +325,8 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/20/项目架构所要考虑的方向/">
-                        <span class="hidden-mobile">项目架构所要考虑的方向</span>
+                      <a href="/2020/05/06/移动端踩得那些坑/">
+                        <span class="hidden-mobile">移动端踩得那些坑</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -381,7 +466,7 @@ canvas.height = canvas.height * ratio;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "移动端踩得那些坑&nbsp;",
+        "js常见排序算法&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

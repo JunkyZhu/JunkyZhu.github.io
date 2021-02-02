@@ -16,7 +16,7 @@
   <meta name="description" content>
   <meta name="author" content="Junky">
   <meta name="keywords" content="前端,JavaScript">
-  <title>移动端踩得那些坑 - Junky</title>
+  <title>手写promise - Junky</title>
 
   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css">
@@ -127,8 +127,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-06 12:13">
-                    2020年5月6日 中午
+                  <time datetime="2020-12-02 16:40">
+                    2020年12月2日 下午
                   </time>
                 </div>
               
@@ -138,7 +138,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    324 字
+                    636 字
                   </span>
                 
 
@@ -148,7 +148,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    3
+                    11
                      分钟
                   </span>
                 
@@ -177,35 +177,179 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="移动端踩得那些坑"><a href="#移动端踩得那些坑" class="headerlink" title="移动端踩得那些坑"></a>移动端踩得那些坑</h2><h3 id="视频"><a href="#视频" class="headerlink" title="视频"></a>视频</h3><p>   ios视频无法允许自动播放，可用gif作为替换方案，或者首屏按钮加入点击按钮</p>
-<h3 id="canvas"><a href="#canvas" class="headerlink" title="canvas"></a>canvas</h3><ul>
-<li><p>高分辨率某些手机机型会出现canvas绘制模糊情况，因为canvas元素依赖于设备像素比，所以绘制时宽高需要乘以实际宽高*dpr倍数  </p>
-<pre><code class="hljs js"><span class="hljs-keyword">var</span> getPixelRatio = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;
-    <span class="hljs-keyword">var</span> backingStore = context.backingStorePixelRatio ||
-        context.webkitBackingStorePixelRatio ||
-        context.mozBackingStorePixelRatio ||
-        context.msBackingStorePixelRatio ||
-        context.oBackingStorePixelRatio ||
-        context.backingStorePixelRatio || <span class="hljs-number">1</span>;
-    <span class="hljs-keyword">return</span> (<span class="hljs-built_in">window</span>.devicePixelRatio || <span class="hljs-number">1</span>) / backingStore;
-&#125;;
-<span class="hljs-keyword">var</span> ratio = getPixelRatio(ctx);
-canvas.width = canvas.width * ratio;
-canvas.height = canvas.height * ratio;</code></pre>
-</li>
-<li><p>drawImage图片在某些机型可能会出现方向显示不正确情况，可使用exif.js 读取出图片元数据， 通过<code>EXIF.getTag(img, &#39;Orientation&#39;)</code> 获取原始图片旋转方向</p>
-</li>
-</ul>
-<h3 id="音频"><a href="#音频" class="headerlink" title="音频"></a>音频</h3><p>   接入微信sdk后，音频需要等待sdk加载完毕,可再<code>DOMContentLoaded</code> 文档内容加载完毕之后 ，监听<code>WeixinJSBridgeReady</code> 事件</p>
-<h3 id="软键盘弹出问题"><a href="#软键盘弹出问题" class="headerlink" title="软键盘弹出问题"></a>软键盘弹出问题</h3><p>  某些机型，在软键盘弹出后，输入框位置与源位置会有变换，简单解决方法监听<code>focus</code> <code>blur</code>事件，<code>focus</code>记录当前滚动位置，<code>blur</code>再滚动到对应区域</p>
-<h3 id="常用H5类库"><a href="#常用H5类库" class="headerlink" title="常用H5类库"></a>常用H5类库</h3><ul>
-<li>animate.css</li>
-<li>wow.js</li>
-<li>exif.js  读取图像元数据</li>
-<li>pixi.js  快速简单的2D精灵渲染引擎</li>
-<li>Scrollerjs 滚动/缩放组件</li>
-</ul>
+              <h3 id="模拟实现promise"><a href="#模拟实现promise" class="headerlink" title="模拟实现promise"></a>模拟实现promise</h3><pre><code class="hljs undefined">
+const PENDING = &apos;pending&apos;;
+const FULFILLED = &apos;fulfilled&apos;;
+const REJECTED = &apos;rejected&apos;;
 
+
+function resolvePromise(p, result, resolve, reject) &#123;
+	if (p === result) &#123;
+		throw new Error(&apos;value can\&apos;t be self&apos;)
+	&#125;
+	if ((typeof result === &apos;object&apos; &amp;&amp; result !==null )|| typeof result === &apos;function&apos;) &#123;
+		let then = result.then
+		if (typeof then === &apos;function&apos;) &#123;
+			let called = false;
+			try &#123;
+				then.call(result, r =&gt; &#123;
+					if (called) return
+					called = true
+
+					resolvePromise(p, r, resolve, reject)
+				&#125;, reason =&gt; &#123;
+					if (called) return
+					called = true
+					reject(reason)
+				&#125;)
+			&#125; catch(e) &#123;
+				reject(e)
+			&#125;
+			
+		&#125; else &#123;
+			resolve(result)
+		&#125;
+	&#125; else &#123;
+		resolve(result)
+		
+		
+	&#125;
+&#125;
+
+/*
+* Promise 有三个状态, 状态变更为fulfilled 或者reject那则不会继续变更;
+* Promise 变更状态后 reason 或者 result值会在then返回	
+* 1. 链式调用.then -&gt; .then -&gt;
+* 2. then 方法需要加入到下一个消息队列执行(setTimeout模拟)
+* 3. 支持延迟结果(异步)
+*/
+class Promise &#123;
+	constructor(executor) &#123;
+		this.state = PENDING;
+		this.result = null;
+		this.reason = null;
+		this.resolveCallbackQueue = [];
+		this.rejectCallbackQueue = [];
+		let resolve = (val) =&gt; &#123;
+			if (val instanceof Promise) &#123;
+				return val.then(resolve, reject)
+			&#125;
+			if (this.state === PENDING) &#123;
+				this.state = FULFILLED;
+				this.result = val;
+				this.resolveCallbackQueue.forEach(callback =&gt; callback(this.result))
+			&#125;
+		&#125;
+		let reject = (reason) =&gt; &#123;
+			if (this.state === PENDING) &#123;
+				this.state = REJECTED;
+				this.reason = reason;
+				this.rejectCallbackQueue.forEach(callback =&gt; callback(this.reason))
+			&#125;
+		&#125;
+		try &#123;
+			executor(resolve, reject)
+		&#125; catch(e) &#123;
+			reject(e)
+		&#125;
+		
+	&#125;
+	static resolve(val) &#123;
+		return new Promise((resolve, reject) =&gt; &#123;
+			resolve(val)
+		&#125;)
+	&#125;
+	static reject(reason) &#123;
+		return new Promise((resolve, reject) =&gt; &#123;
+			reject(reason)
+		&#125;)
+	&#125;
+	then(onFulfilled, onRejected) &#123;
+		// 调用then的时候,如果state是pengding状态,说明是异步结果,通过发布订阅处理结果
+		onFulfilled = typeof onFulfilled === &apos;function&apos; ? onFulfilled : v =&gt; v;
+		onRejected = typeof onRejected === &apos;function&apos; ? onRejected : err =&gt; &#123; throw err &#125;;
+		let p = new Promise((resolve, reject) =&gt; &#123;
+			if (this.state === PENDING) &#123;
+				this.resolveCallbackQueue.push(() =&gt; &#123;
+					setTimeout(() =&gt; &#123;
+						try &#123;
+							let result = onFulfilled(this.result)
+							resolvePromise(p, result, resolve, reject)
+						&#125; catch(e) &#123;
+							reject(e)
+						&#125;
+					&#125;, 0)
+				&#125;)
+				this.rejectCallbackQueue.push(() =&gt; &#123;
+					setTimeout(() =&gt; &#123;
+						try &#123;
+							let reason = onRejected(this.reason)
+							resolvePromise(p, reason, resolve, reject)
+						&#125; catch(e) &#123;
+							reject(this.reason)
+						&#125;
+					&#125;, 0)
+				&#125;)
+			&#125;
+			if(this.state === FULFILLED) &#123;
+				setTimeout(() =&gt; &#123;
+					try &#123;
+						let result = onFulfilled(this.result)
+						resolvePromise(p, result, resolve, reject)
+					&#125; catch(e) &#123;
+						reject(e)
+					&#125;
+				&#125;, 0)
+			&#125;
+			if (this.state === REJECTED) &#123;
+				setTimeout(() =&gt; &#123;
+					try &#123;
+						let reason = onRejected(this.reason)
+						resolvePromise(p, reason, resolve, reject)
+					&#125; catch(e) &#123;
+						reject(this.reason)
+					&#125;
+				&#125;, 0)
+			&#125;
+		&#125;)
+		return p
+		
+	&#125;
+	catch(callback) &#123;
+		return this.then(null, callback)
+	&#125;
+&#125;
+
+// 示例
+function asyncFn() &#123;
+	return new Promise((resolve, reject) =&gt; &#123;
+		console.log(&apos;promise start&apos;)
+		setTimeout(() =&gt; &#123;
+			console.log(&apos;promise settimeout 2000&apos;)
+			resolve(10)
+		&#125;, 2000)
+	&#125; )
+&#125;
+console.log(&apos;start&apos;)
+setTimeout(function() &#123;
+	console.log(&apos;setTimeout 2000&apos;)
+&#125;, 2000)
+
+asyncFn().then(val =&gt; &#123;
+	console.log(111, val)
+	return val
+&#125;).then(val =&gt; &#123;
+	console.log(222, val)
+&#125;).then(val =&gt; &#123;
+	return new Promise((resolve, reject) =&gt; &#123;
+		setTimeout(() =&gt; &#123;
+			resolve(30)
+		&#125;, 3000)
+	&#125; )
+&#125;).then(val =&gt; &#123;
+    console.log(333, val)
+&#125;)
+console.log(&apos;end&apos;)</code></pre>
             </article>
             <hr>
             <div>
@@ -215,9 +359,9 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/js/">js</a>
+                      <a class="hover-with-bg" href="/tags/javascript/">javascript</a>
                     
-                      <a class="hover-with-bg" href="/tags/H5/">H5</a>
+                      <a class="hover-with-bg" href="/tags/promise/">promise</a>
                     
                   </div>
                 
@@ -230,9 +374,9 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/08/31/js 常见排序/">
+                      <a href="/2020/12/07/统计、埋点、异常监控/">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">js常见排序算法</span>
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -240,8 +384,8 @@ canvas.height = canvas.height * ratio;</code></pre>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/04/20/项目架构所要考虑的方向/">
-                        <span class="hidden-mobile">项目架构所要考虑的方向</span>
+                      <a href="/2020/12/02/数据结构与算法/">
+                        <span class="hidden-mobile">JS 常见面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -381,7 +525,7 @@ canvas.height = canvas.height * ratio;</code></pre>
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "移动端踩得那些坑&nbsp;",
+        "手写promise&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,
