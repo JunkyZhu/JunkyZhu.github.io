@@ -241,3 +241,74 @@ tags:
 ```
 
 ### 3. call & apply & bind
+
+### 4. debounce & throttle
+
+#### debounce
+
+```
+function debounce(fn, time) {
+    let timer = null
+    return function (...args) {
+        if (timer) {
+            clearTimeout(timer)
+        }
+        timer = setTimeout(() => {
+            fn.apply(this, args)
+        }, time)
+       
+        
+    }
+}
+```
+#### throttle
+```
+function throttle(fn, time) {
+    let flag = true
+    return function(...args) {
+        if (flag) {
+            setTimeout(() => {
+                fn.call(this, ...args)
+                flag = true
+            }, time)
+            flag = false
+            
+        }
+        
+    }
+}
+```
+
+### DFS & BFS
+
+
+```
+function deepFirstSearch(tree, cb) {
+    if(Array.from(tree).forEach) {
+        Array.from(tree).forEach(item => {
+            cb(item)
+            if(item.children) {
+                deepSearch(item.children, cb)
+            }
+        })
+    }
+    
+}
+function deepFirstSearch(node) {
+    let nodes = [];
+    if(node!==null) {
+        let stack = [];
+        stack.push(node)
+        while(stack.length) {
+            let item = stack.pop();
+            nodes.push(item)
+            if(item.children) {
+                for(let i = item.children.length - 1;i>=0; i--) {
+                    stack.push(item.children[i])
+                }
+            }
+        }
+    }
+    return nodes
+}
+```

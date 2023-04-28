@@ -1,6 +1,6 @@
 ---
 title: 手写promise
-date: 2020-12-02 16:40:56
+date: 2020-11-08 13:40:52
 tags: 
    - javascript
    - promise
